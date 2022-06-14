@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.bcopstein.aplicacao.dtos.ParamSubtotal_DTO;
+import com.bcopstein.negocio.entidades.ItemCarrinho;
+import com.bcopstein.negocio.entidades.Produto;
+
 @RestController
 @RequestMapping("/vendas")
 public class Controller {
