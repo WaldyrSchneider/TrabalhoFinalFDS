@@ -16,22 +16,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.bcopstein.aplicacao.casosDeUso.produto.ConsultaProdutosUC;
+import com.bcopstein.aplicacao.casosDeUso.produto.SelecionaProdutoUC;
 import com.bcopstein.aplicacao.dtos.ParamSubtotal_DTO;
 import com.bcopstein.negocio.entidades.ItemCarrinho;
 import com.bcopstein.negocio.entidades.Produto;
-import com.bcopstein.negocio.repositorios.IProdutoRepositorio;
 
 @RestController
 @RequestMapping("/vendas")
 public class Controller {
   private final List<String> vendasEfetuadas;
   private final Map<String, Integer> cacheFrete;
-  private final IProdutoRepositorio iProdutoRepositorio;
+  private final ConsultaProdutosUC consultaProdutosUC;
+  private final SelecionaProdutoUC selecionaProdutoUC;
 
   @Autowired
-  public Controller(IProdutoRepositorio iProdutoRepositorio) {
+  public Controller(ConsultaProdutosUC consultaProdutosUC, SelecionaProdutoUC selecionaProdutoUC) {
 
-    this.iProdutoRepositorio = iProdutoRepositorio;
+    this.consultaProdutosUC = consultaProdutosUC;
+    this.selecionaProdutoUC = selecionaProdutoUC;
     // Cria cache frete
     cacheFrete = new HashMap<>();
 
@@ -42,15 +45,14 @@ public class Controller {
   @GetMapping("/produtos")
   @CrossOrigin(origins = "*")
   public List<Produto> listaProdutos() {
-    return iProdutoRepositorio.todos();
+    return consultaProdutosUC.run();
   }
 
-  // @GetMapping("/autorizacao")
-  // @CrossOrigin(origins = "*")
-  // public boolean podeVender(@RequestParam final Integer codProd, @RequestParam final Integer qtdade) {
-  //   final boolean disponivel = produtos.stream().anyMatch(p -> p.getCodigo() == codProd && p.getQtdade() >= qtdade);
-  //   return disponivel;
-  // }
+  @GetMapping("/autorizacao")
+  @CrossOrigin(origins = "*")
+  public boolean podeVender(@RequestParam final Integer codProd, @RequestParam final Integer qtdade) {
+    return selecionaProdutoUC.run(codProd, qtdade);
+  }
 
   // @PostMapping("/confirmacao")
   // @CrossOrigin(origins = "*")

@@ -1,9 +1,11 @@
 com/bcopstein/negocio/entidades/Produto.class
 com/bcopstein/adaptores/repositorios/IProdutoCrud.class
+com/bcopstein/adaptores/repositorios/ProdutoRepositorio.class
 com/bcopstein/SvBkPrototipo.class
 com/bcopstein/negocio/entidades/ItemCarrinho.class
 com/bcopstein/aplicacao/dtos/ParamSubtotal_DTO.class
 com/bcopstein/adaptores/controllers/Controller.class
 com/bcopstein/negocio/servicos/ServicoProduto.class
+com/bcopstein/aplicacao/casosDeUso/produto/SelecionaProdutoUC.class
+com/bcopstein/aplicacao/casosDeUso/produto/ConsultaProdutosUC.class
 com/bcopstein/negocio/repositorios/IProdutoRepositorio.class
-com/bcopstein/adaptores/repositorios/ProtudoRepositorio.class

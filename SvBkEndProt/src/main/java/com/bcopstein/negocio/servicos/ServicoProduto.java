@@ -18,7 +18,6 @@ public class ServicoProduto {
     }
 
     public ServicoProduto(){
-        
     }
 
     public List<Produto> todos() {
@@ -29,4 +28,7 @@ public class ServicoProduto {
         iProdutoRepositorio.cadastra(produto);
     }
     
+    public Produto procuraPorCodProduto(int codigo) {
+        return iProdutoRepositorio.procuraPorCodProduto(codigo);
+    }
 }

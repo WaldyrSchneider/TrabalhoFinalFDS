@@ -6,12 +6,12 @@ import javax.persistence.Id;
 @Entity
 public class Produto {
   @Id
-  private Long codigo;
+  private int codigo;
   private String descricao;
   private double preco;
   private int qtdade;
 
-  public Produto(Long codigo, String descricao, double preco, int qtdade) {
+  public Produto(int codigo, String descricao, double preco, int qtdade) {
     this.codigo = codigo;
     this.descricao = descricao;
     this.preco = preco;
@@ -20,7 +20,7 @@ public class Produto {
 
   public Produto(){}
 
-  public Long getCodigo() {
+  public int getCodigo() {
     return codigo;
   }
 
