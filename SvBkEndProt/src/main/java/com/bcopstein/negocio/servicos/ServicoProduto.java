@@ -17,9 +17,8 @@ public class ServicoProduto {
         this.iProdutoRepositorio = iProdutoRepositorio;
     }
 
-    public ServicoProduto(){
-    }
-
+    public ServicoProduto(){}
+    
     public List<Produto> todos() {
         return iProdutoRepositorio.todos();
     }

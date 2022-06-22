@@ -8,5 +8,6 @@ import com.bcopstein.negocio.entidades.Produto;
 
 public interface IProdutoCrud extends CrudRepository<Produto, Integer>{
     List<Produto> findAll();
+    // boolean saveProduto(Produto produto);
     Produto findByCodigo(int codigo);
 }

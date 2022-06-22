@@ -3,20 +3,18 @@ package com.bcopstein.aplicacao.casosDeUso.produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bcopstein.negocio.entidades.Produto;
-import com.bcopstein.negocio.servicos.ServicoProduto;
+import com.bcopstein.negocio.servicos.ServicoItemDeEstoque;
 
 @Component
 public class SelecionaProdutoUC {
-    private ServicoProduto servicoProduto;
+    private ServicoItemDeEstoque servicoItemDeEstoque;
 
     @Autowired
-    public SelecionaProdutoUC(ServicoProduto servicoProduto) {
-        this.servicoProduto = servicoProduto;
+    public SelecionaProdutoUC(ServicoItemDeEstoque servicoItemDeEstoque) {
+        this.servicoItemDeEstoque = servicoItemDeEstoque;
     }
 
     public boolean run(int codigo, int qtdade) {
-        Produto produto = servicoProduto.procuraPorCodProduto(codigo);
-        return produto.getQtdade() >= qtdade;
+        return servicoItemDeEstoque.procuraPorProduto(codigo).getQtdade() >= qtdade;
     }
 }
