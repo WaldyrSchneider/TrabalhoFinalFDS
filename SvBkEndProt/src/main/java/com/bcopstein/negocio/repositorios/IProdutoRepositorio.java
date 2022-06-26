@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface IProdutoRepositorio {
     List<Produto> todos();
+
     boolean cadastra(Produto produto);
+
     Produto procuraPorCodProduto(int codigo);
 }

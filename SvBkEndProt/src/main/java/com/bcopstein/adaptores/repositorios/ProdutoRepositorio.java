@@ -9,7 +9,7 @@ import com.bcopstein.negocio.entidades.Produto;
 import com.bcopstein.negocio.repositorios.IProdutoRepositorio;
 
 @Component
-public class ProdutoRepositorio implements IProdutoRepositorio{
+public class ProdutoRepositorio implements IProdutoRepositorio {
     private IProdutoCrud produtoCrud;
 
     @Autowired
@@ -30,6 +30,7 @@ public class ProdutoRepositorio implements IProdutoRepositorio{
 
     @Override
     public boolean cadastra(Produto produto) {
+        produtoCrud.save(produto);
         return true;
     }
 
@@ -38,5 +39,5 @@ public class ProdutoRepositorio implements IProdutoRepositorio{
         Produto produto = produtoCrud.findByCodigo(codigo);
         return produto;
     }
-    
+
 }

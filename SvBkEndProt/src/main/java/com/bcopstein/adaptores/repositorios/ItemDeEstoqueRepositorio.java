@@ -9,17 +9,17 @@ import com.bcopstein.negocio.entidades.ItemDeEstoque;
 import com.bcopstein.negocio.repositorios.InterfaceItemDeEstoqueRepo;
 
 @Component
-public class ItemDeEstoqueRepositorio implements InterfaceItemDeEstoqueRepo{
+public class ItemDeEstoqueRepositorio implements InterfaceItemDeEstoqueRepo {
     private ItemDeEstoqueCrud itemDeEstoqueCrud;
 
     @Autowired
     public ItemDeEstoqueRepositorio(ItemDeEstoqueCrud itemDeEstoqueCrud) {
         this.itemDeEstoqueCrud = itemDeEstoqueCrud;
-        itemDeEstoqueCrud.save(new ItemDeEstoque(10,10));
-        itemDeEstoqueCrud.save(new ItemDeEstoque(20,10));
-        itemDeEstoqueCrud.save(new ItemDeEstoque(30,10));
-        itemDeEstoqueCrud.save(new ItemDeEstoque(40,10));
-        itemDeEstoqueCrud.save(new ItemDeEstoque(50,10));
+        itemDeEstoqueCrud.save(new ItemDeEstoque(10, 10));
+        itemDeEstoqueCrud.save(new ItemDeEstoque(20, 10));
+        itemDeEstoqueCrud.save(new ItemDeEstoque(30, 10));
+        itemDeEstoqueCrud.save(new ItemDeEstoque(40, 10));
+        itemDeEstoqueCrud.save(new ItemDeEstoque(50, 10));
     }
 
     @Override
@@ -29,6 +29,7 @@ public class ItemDeEstoqueRepositorio implements InterfaceItemDeEstoqueRepo{
 
     @Override
     public boolean cadastra(ItemDeEstoque itemDeEstoque) {
+        itemDeEstoqueCrud.save(itemDeEstoque);
         return true;
     }
 
@@ -36,5 +37,12 @@ public class ItemDeEstoqueRepositorio implements InterfaceItemDeEstoqueRepo{
     public ItemDeEstoque procuraPorCodigo(int codigo) {
         return itemDeEstoqueCrud.findByCodigo(codigo);
     }
-    
+
+    @Override
+    public boolean remove(ItemDeEstoque itemDeEstoque, int qtdade) {
+        itemDeEstoque.setQtdade(itemDeEstoque.getQtdade() - qtdade);
+        itemDeEstoqueCrud.save(itemDeEstoque);
+        return true;
+    }
+
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import com.bcopstein.negocio.entidades.ItemDeEstoque;
 import com.bcopstein.negocio.repositorios.InterfaceItemDeEstoqueRepo;
 
-
 @Component
 public class ServicoItemDeEstoque {
     public InterfaceItemDeEstoqueRepo interfaceItemDeEstoqueRepo;
@@ -18,9 +17,10 @@ public class ServicoItemDeEstoque {
         this.interfaceItemDeEstoqueRepo = interfaceItemDeEstoqueRepo;
     }
 
-    public ServicoItemDeEstoque() {}
+    public ServicoItemDeEstoque() {
+    }
 
-    public List<ItemDeEstoque> todos(){
+    public List<ItemDeEstoque> todos() {
         return interfaceItemDeEstoqueRepo.todos();
     }
 
@@ -30,5 +30,9 @@ public class ServicoItemDeEstoque {
 
     public ItemDeEstoque procuraPorProduto(int codigo) {
         return interfaceItemDeEstoqueRepo.procuraPorCodigo(codigo);
+    }
+
+    public boolean remove(ItemDeEstoque itemDeEstoque, int qtdade) {
+        return interfaceItemDeEstoqueRepo.remove(itemDeEstoque, qtdade);
     }
 }

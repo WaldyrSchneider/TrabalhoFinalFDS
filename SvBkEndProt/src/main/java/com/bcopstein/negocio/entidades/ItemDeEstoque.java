@@ -15,14 +15,19 @@ public class ItemDeEstoque {
         this.qtdade = qtdade;
     }
 
-    public ItemDeEstoque(){}
+    public ItemDeEstoque() {
+    }
 
     public int getCodigo() {
         return codigo;
     }
 
     public int getQtdade() {
-        return qtdade;
+        return this.qtdade;
+    }
+
+    public void setQtdade(int qtdade) {
+        this.qtdade = qtdade;
     }
 
 }

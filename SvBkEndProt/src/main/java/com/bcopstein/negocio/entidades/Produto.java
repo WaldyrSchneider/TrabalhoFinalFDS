@@ -1,10 +1,13 @@
 package com.bcopstein.negocio.entidades;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Produto {
+public class Produto implements Serializable {
+
   @Id
   private int codigo;
   private String descricao;
@@ -16,9 +19,10 @@ public class Produto {
     this.preco = preco;
   }
 
-  public Produto(){}
+  public Produto() {
+  }
 
-  public int getCodigo() {
+  public long getCodigo() {
     return codigo;
   }
 

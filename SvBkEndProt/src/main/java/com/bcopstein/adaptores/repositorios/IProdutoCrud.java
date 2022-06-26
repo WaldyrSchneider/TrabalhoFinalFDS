@@ -6,8 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.bcopstein.negocio.entidades.Produto;
 
-public interface IProdutoCrud extends CrudRepository<Produto, Integer>{
+public interface IProdutoCrud extends CrudRepository<Produto, Integer> {
     List<Produto> findAll();
-    // boolean saveProduto(Produto produto);
+
     Produto findByCodigo(int codigo);
 }

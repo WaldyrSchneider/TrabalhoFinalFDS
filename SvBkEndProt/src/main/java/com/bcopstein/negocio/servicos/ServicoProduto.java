@@ -17,8 +17,9 @@ public class ServicoProduto {
         this.iProdutoRepositorio = iProdutoRepositorio;
     }
 
-    public ServicoProduto(){}
-    
+    public ServicoProduto() {
+    }
+
     public List<Produto> todos() {
         return iProdutoRepositorio.todos();
     }
@@ -26,7 +27,7 @@ public class ServicoProduto {
     public void cadastra(Produto produto) {
         iProdutoRepositorio.cadastra(produto);
     }
-    
+
     public Produto procuraPorCodProduto(int codigo) {
         return iProdutoRepositorio.procuraPorCodProduto(codigo);
     }

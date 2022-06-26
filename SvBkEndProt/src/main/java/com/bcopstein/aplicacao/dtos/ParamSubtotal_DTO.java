@@ -25,5 +25,5 @@ public class ParamSubtotal_DTO {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }    
+    }
 }
