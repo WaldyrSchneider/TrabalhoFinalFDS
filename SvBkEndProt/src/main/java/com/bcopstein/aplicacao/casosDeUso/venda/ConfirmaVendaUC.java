@@ -6,6 +6,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.bcopstein.aplicacao.servicos.imposto.ServicoImposto;
 import com.bcopstein.negocio.entidades.ItemCarrinho;
 import com.bcopstein.negocio.entidades.ItemDeEstoque;
 import com.bcopstein.negocio.entidades.Produto;
@@ -19,13 +20,15 @@ public class ConfirmaVendaUC {
     private ServicoItemDeEstoque servicoItemDeEstoque;
     private ServicoProduto servicoProduto;
     private ServicoVenda servicoVenda;
+    private ServicoImposto servicoImposto;
 
     @Autowired
     public ConfirmaVendaUC(ServicoItemDeEstoque servicoItemDeEstoque, ServicoProduto servicoProduto,
-            ServicoVenda servicoVenda) {
+            ServicoVenda servicoVenda, ServicoImposto servicoImposto) {
         this.servicoItemDeEstoque = servicoItemDeEstoque;
         this.servicoProduto = servicoProduto;
         this.servicoVenda = servicoVenda;
+        this.servicoImposto = servicoImposto;
     }
 
     public boolean run(ItemCarrinho[] itens) {
@@ -37,6 +40,7 @@ public class ConfirmaVendaUC {
         for (ItemCarrinho item : itens) {
             Produto produto = servicoProduto.procuraPorCodProduto(item.getCodigo());
             totalVenda += produto.getPreco() * item.getQuantidade();
+            imposto += servicoImposto.calculaImposto(produto.getPreco());
             ItemDeEstoque itemDeEstoque = servicoItemDeEstoque.procuraPorProduto(item.getCodigo());
             servicoItemDeEstoque.remove(itemDeEstoque, item.getQuantidade());
             itensDeVenda.add(produto);
