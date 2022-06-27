@@ -35,4 +35,8 @@ public class ServicoItemDeEstoque {
     public boolean remove(ItemDeEstoque itemDeEstoque, int qtdade) {
         return interfaceItemDeEstoqueRepo.remove(itemDeEstoque, qtdade);
     }
+
+    public boolean insere(int codigo, int qtdade) {
+        return interfaceItemDeEstoqueRepo.insere(codigo, qtdade);
+    }
 }

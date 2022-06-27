@@ -1,4 +1,4 @@
-package com.bcopstein.adaptores.repositorios;
+package com.bcopstein.adaptores.repositorios.produto;
 
 import java.util.List;
 

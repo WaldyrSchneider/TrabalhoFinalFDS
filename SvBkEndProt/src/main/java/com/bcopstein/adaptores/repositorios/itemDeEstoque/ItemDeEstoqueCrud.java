@@ -1,4 +1,4 @@
-package com.bcopstein.adaptores.repositorios;
+package com.bcopstein.adaptores.repositorios.itemDeEstoque;
 
 import org.springframework.data.repository.CrudRepository;
 

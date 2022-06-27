@@ -12,4 +12,6 @@ public interface InterfaceItemDeEstoqueRepo {
     ItemDeEstoque procuraPorCodigo(int codigo);
 
     boolean remove(ItemDeEstoque itemDeEstoque, int qtdade);
+
+    boolean insere(int codigo, int qtdade);
 }

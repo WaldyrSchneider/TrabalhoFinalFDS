@@ -14,12 +14,12 @@ public class Venda {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long numeroVenda;
-    ArrayList<Produto> produtos;
+    ArrayList<ItemDeVenda> produtos;
     private double totalVenda;
     private double imposto;
     private Date data;
 
-    public Venda(ArrayList<Produto> produtos, double totalVenda, Double imposto, Date data) {
+    public Venda(ArrayList<ItemDeVenda> produtos, double totalVenda, Double imposto, Date data) {
         this.produtos = produtos;
         this.totalVenda = totalVenda;
         this.imposto = imposto;
@@ -33,7 +33,7 @@ public class Venda {
         return numeroVenda;
     }
 
-    public ArrayList<Produto> getProdutos() {
+    public ArrayList<ItemDeVenda> getProdutos() {
         return produtos;
     }
 

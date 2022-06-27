@@ -11,6 +11,7 @@ import com.bcopstein.aplicacao.servicos.imposto.ServicoImposto;
 import com.bcopstein.aplicacao.servicos.restricao.ServicoRestricao;
 import com.bcopstein.negocio.entidades.ItemCarrinho;
 import com.bcopstein.negocio.entidades.ItemDeEstoque;
+import com.bcopstein.negocio.entidades.ItemDeVenda;
 import com.bcopstein.negocio.entidades.Produto;
 import com.bcopstein.negocio.entidades.Venda;
 import com.bcopstein.negocio.servicos.ServicoItemDeEstoque;
@@ -36,7 +37,7 @@ public class ConfirmaVendaUC {
     }
 
     public boolean run(ItemCarrinho[] itens) {
-        ArrayList<Produto> itensDeVenda = new ArrayList<>();
+        ArrayList<ItemDeVenda> itensDeVenda = new ArrayList<>();
 
         double totalVenda = 0;
         double imposto = 0;
@@ -50,9 +51,12 @@ public class ConfirmaVendaUC {
             Produto produto = servicoProduto.procuraPorCodProduto(item.getCodigo());
             totalVenda += produto.getPreco() * item.getQuantidade();
             imposto += servicoImposto.calculaImposto(produto.getPreco());
+
             ItemDeEstoque itemDeEstoque = servicoItemDeEstoque.procuraPorProduto(item.getCodigo());
             servicoItemDeEstoque.remove(itemDeEstoque, item.getQuantidade());
-            itensDeVenda.add(produto);
+
+            ItemDeVenda itemDeVenda = new ItemDeVenda(item.getCodigo(), produto.getDescricao(), produto.getPreco(), item.getQuantidade());
+            itensDeVenda.add(itemDeVenda);
         }
 
         Date date = new Date();

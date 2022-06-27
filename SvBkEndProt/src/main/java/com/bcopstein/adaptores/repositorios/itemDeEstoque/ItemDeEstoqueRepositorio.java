@@ -1,4 +1,4 @@
-package com.bcopstein.adaptores.repositorios;
+package com.bcopstein.adaptores.repositorios.itemDeEstoque;
 
 import java.util.List;
 
@@ -41,6 +41,14 @@ public class ItemDeEstoqueRepositorio implements InterfaceItemDeEstoqueRepo {
     @Override
     public boolean remove(ItemDeEstoque itemDeEstoque, int qtdade) {
         itemDeEstoque.setQtdade(itemDeEstoque.getQtdade() - qtdade);
+        itemDeEstoqueCrud.save(itemDeEstoque);
+        return true;
+    }
+
+    @Override
+    public boolean insere(int codigo, int qtdade) {
+        ItemDeEstoque itemDeEstoque = itemDeEstoqueCrud.findByCodigo(codigo);
+        itemDeEstoque.setQtdade(itemDeEstoque.getQtdade() + qtdade);
         itemDeEstoqueCrud.save(itemDeEstoque);
         return true;
     }
