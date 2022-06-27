@@ -1,7 +1,6 @@
 package com.bcopstein.negocio.entidades;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,16 +13,16 @@ public class Venda {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long numeroVenda;
-    ArrayList<ItemDeVenda> produtos;
+    private ArrayList<ItemDeVenda> produtos;
+    private double subTotal;
     private double totalVenda;
     private double imposto;
-    private Date data;
 
-    public Venda(ArrayList<ItemDeVenda> produtos, double totalVenda, Double imposto, Date data) {
+    public Venda(ArrayList<ItemDeVenda> produtos, double subTotal, double totalVenda, Double imposto) {
         this.produtos = produtos;
         this.totalVenda = totalVenda;
         this.imposto = imposto;
-        this.data = data;
+        this.subTotal = subTotal;
     }
 
     public Venda() {
@@ -37,6 +36,10 @@ public class Venda {
         return produtos;
     }
 
+    public double getSubTotalVenda() {
+        return subTotal;
+    }
+
     public double getTotalVenda() {
         return totalVenda;
     }
@@ -45,13 +48,10 @@ public class Venda {
         return imposto;
     }
 
-    public Date getData() {
-        return data;
-    }
-
     @Override
     public String toString() {
-        return "Venda [numeroVenda=" + numeroVenda + ", produtos=" + produtos + ", totalVenda=" + totalVenda + "]";
+        return "Venda [imposto=" + imposto + ", numeroVenda=" + numeroVenda + ", subTotal=" + subTotal + ", totalVenda="
+                + totalVenda + "]";
     }
 
 }

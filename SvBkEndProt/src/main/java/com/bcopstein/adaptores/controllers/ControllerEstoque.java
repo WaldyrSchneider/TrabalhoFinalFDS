@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bcopstein.aplicacao.casosDeUso.estoque.ConsultaEstoqueUC;
+import com.bcopstein.aplicacao.casosDeUso.estoque.GerenciaEstoqueUC;
 import com.bcopstein.aplicacao.casosDeUso.estoque.InsereEstoqueUC;
 import com.bcopstein.negocio.entidades.ItemDeEstoque;
 
@@ -18,10 +19,12 @@ import com.bcopstein.negocio.entidades.ItemDeEstoque;
 public class ControllerEstoque {
     private ConsultaEstoqueUC consultaEstoqueUC;
     private InsereEstoqueUC insereEstoqueUC;
+    private GerenciaEstoqueUC gerenciaEstoqueUC;
 
-    public ControllerEstoque(ConsultaEstoqueUC consultaEstoqueUC, InsereEstoqueUC insereEstoqueUC) {
+    public ControllerEstoque(ConsultaEstoqueUC consultaEstoqueUC, InsereEstoqueUC insereEstoqueUC, GerenciaEstoqueUC gerenciaEstoqueUC) {
         this.consultaEstoqueUC = consultaEstoqueUC;
         this.insereEstoqueUC = insereEstoqueUC;
+        this.gerenciaEstoqueUC = gerenciaEstoqueUC;
     }
 
     @GetMapping("/produtos")
@@ -32,7 +35,13 @@ public class ControllerEstoque {
 
     @PostMapping("/insere")
     @CrossOrigin(origins = "*")
-    public boolean podeVender(@RequestParam final Integer codigo, @RequestParam final Integer qtdade) {
+    public boolean insere(@RequestParam final Integer codigo, @RequestParam final Integer qtdade) {
       return insereEstoqueUC.run(codigo, qtdade);
+    }
+
+    @GetMapping("/gerencia")
+    @CrossOrigin(origins = "*")
+    public String gerencia() {
+        return gerenciaEstoqueUC.run();
     }
 }

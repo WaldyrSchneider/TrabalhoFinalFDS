@@ -39,7 +39,7 @@ public class ConfirmaVendaUC {
     public boolean run(ItemCarrinho[] itens) {
         ArrayList<ItemDeVenda> itensDeVenda = new ArrayList<>();
 
-        double totalVenda = 0;
+        double subTotal = 0;
         double imposto = 0;
         if (LocalTime.now().getHour() > 20) {
             if (servicoRestricao.restricao(itens)) {
@@ -49,7 +49,7 @@ public class ConfirmaVendaUC {
 
         for (ItemCarrinho item : itens) {
             Produto produto = servicoProduto.procuraPorCodProduto(item.getCodigo());
-            totalVenda += produto.getPreco() * item.getQuantidade();
+            subTotal += produto.getPreco() * item.getQuantidade();
             imposto += servicoImposto.calculaImposto(produto.getPreco());
 
             ItemDeEstoque itemDeEstoque = servicoItemDeEstoque.procuraPorProduto(item.getCodigo());
@@ -59,8 +59,7 @@ public class ConfirmaVendaUC {
             itensDeVenda.add(itemDeVenda);
         }
 
-        Date date = new Date();
-        Venda venda = new Venda(itensDeVenda, totalVenda, imposto, date);
+        Venda venda = new Venda(itensDeVenda, subTotal, subTotal + imposto, imposto);
         return servicoVenda.cadastraVenda(venda);
     }
 }
