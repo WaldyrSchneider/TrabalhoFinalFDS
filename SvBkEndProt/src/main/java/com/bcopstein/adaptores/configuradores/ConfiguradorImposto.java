@@ -23,7 +23,7 @@ public class ConfiguradorImposto {
     }
     
     @Bean
-    @ConditionalOnProperty(name = "imposto.eau", havingValue = "eua")
+    @ConditionalOnProperty(name = "imposto.eua", havingValue = "eua")
     public ICalculaImposto impostoEUA() {
         return new ImpostoEUA();
     }
