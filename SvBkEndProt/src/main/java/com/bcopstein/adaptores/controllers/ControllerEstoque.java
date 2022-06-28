@@ -21,7 +21,8 @@ public class ControllerEstoque {
     private InsereEstoqueUC insereEstoqueUC;
     private GerenciaEstoqueUC gerenciaEstoqueUC;
 
-    public ControllerEstoque(ConsultaEstoqueUC consultaEstoqueUC, InsereEstoqueUC insereEstoqueUC, GerenciaEstoqueUC gerenciaEstoqueUC) {
+    public ControllerEstoque(ConsultaEstoqueUC consultaEstoqueUC, InsereEstoqueUC insereEstoqueUC,
+            GerenciaEstoqueUC gerenciaEstoqueUC) {
         this.consultaEstoqueUC = consultaEstoqueUC;
         this.insereEstoqueUC = insereEstoqueUC;
         this.gerenciaEstoqueUC = gerenciaEstoqueUC;
@@ -36,7 +37,7 @@ public class ControllerEstoque {
     @PostMapping("/insere")
     @CrossOrigin(origins = "*")
     public boolean insere(@RequestParam final Integer codigo, @RequestParam final Integer qtdade) {
-      return insereEstoqueUC.run(codigo, qtdade);
+        return insereEstoqueUC.run(codigo, qtdade);
     }
 
     @GetMapping("/gerencia")

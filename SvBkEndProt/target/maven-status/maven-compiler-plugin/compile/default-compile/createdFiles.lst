@@ -1,3 +1,4 @@
+com/bcopstein/aplicacao/casosDeUso/estoque/GerenciaEstoqueUC.class
 com/bcopstein/adaptores/repositorios/itemDeEstoque/ItemDeEstoqueCrud.class
 com/bcopstein/aplicacao/casosDeUso/venda/ConfirmaVendaUC.class
 com/bcopstein/negocio/entidades/Venda.class

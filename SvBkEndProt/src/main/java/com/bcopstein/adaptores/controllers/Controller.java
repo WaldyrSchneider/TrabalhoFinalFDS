@@ -1,8 +1,6 @@
 package com.bcopstein.adaptores.controllers;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,7 +24,6 @@ import com.bcopstein.negocio.entidades.Venda;
 @RestController
 @RequestMapping("/vendas")
 public class Controller {
-  private final Map<String, Integer> cacheFrete;
   private final ConsultaProdutosUC consultaProdutosUC;
   private final SelecionaProdutoUC selecionaProdutoUC;
   private final ConfirmaVendaUC confirmaVendaUC;
@@ -42,8 +39,6 @@ public class Controller {
     this.confirmaVendaUC = confirmaVendaUC;
     this.consultaVendaUC = consultaVendaUC;
     this.subTotalUC = subTotalUC;
-    // Cria cache frete
-    cacheFrete = new HashMap<>();
   }
 
   @GetMapping("/produtos")
@@ -73,12 +68,6 @@ public class Controller {
   @PostMapping("/subtotal")
   @CrossOrigin(origins = "*")
   public Integer[] calculaSubtotal(@RequestBody final ParamSubtotal_DTO param) {
-
-    // Verifica se o endereço já está na cache
-    if (!cacheFrete.keySet().contains(param.getEndereco())) {
-      // Calcula o frete
-      cacheFrete.put(param.getEndereco(), 25);
-    }
     return subTotalUC.run(param);
   }
 }
